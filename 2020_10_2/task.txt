@@ -1,0 +1,254 @@
+
+***********void shoot_task(void const *argu) 			 //死等 在gimbal_task中  的信号量，信号量发送了才会执行
+*void can_msg_send_task(void const *argu)  //死等在gimbal_task或chassis_task中的信号量，信号量发送了才会执行//加
+***********void mode_switch_task(void const *argu)  //先开了两个定时器，然后每隔INFO_GET_PERIOD执行一次 （5ms）
+***********void info_get_task(void const *argu)     //死等在mode_switch_task中 的信号量
+*void detect_task(void const *argu)			//每隔DETECT_TASK_PERIOD执行一次 （50ms）
+***********void imu_task(void const *argu)			//每隔IMU_TASK_PERIOD执行一次     （1ms）
+*void judge_unpack_task(void const *argu)	//死等 在pc_data_handler或uart_idle_interrupt_signal中的信号量，信号量发送了才会执行
+*void pc_unpack_task(void const *argu)		//死等 在freq_info_tas和uart_idle_interrupt_signal中的信号量，信号量发送了才会执行
+*void freq_info_task(void const *argu)		//每隔COMM_TASK_PERIOD执行一次  （10ms）
+***********void gimbal_task(void const *argu)		  //云台任务按照周期运行，周期5ms
+***********void chassis_task(void const *argu)        //底盘任务按照周期运行，周期10ms
+
+
+/********************************************chassis_task(void)******************************************************/
+
+void chassis_task(void)
+{
+  switch (chassis.ctrl_mode)
+  {
+    case DODGE_MODE:           //扭屁股
+    {
+      chassis.vx = 0;
+      chassis.vy = 0;
+      chassis_twist_handler();
+    }break;
+    
+    case AUTO_FOLLOW_GIMBAL:  //全自动且跟随云台（全自动未添加）
+    {
+      chassis.position_ref = 0;
+      chassis.vw = -pid_calc(&pid_chassis_angle, gimbal.sensor.yaw_relative_angle, chassis.position_ref); 
+			
+    }break;
+    
+    case AUTO_SEPARATE_GIMBAL: //全自动且分离云台（全自动未添加）
+    {
+      chassis.position_ref = 0;
+    }break;
+    
+    case CHASSIS_STOP:         //停止
+    {
+      chassis_stop_handler();
+    }break;
+
+    case MANUAL_SEPARATE_GIMBAL: //手动控制且与云台分离
+    {
+      separate_gimbal_handler();
+    }break;
+    
+    case MANUAL_FOLLOW_GIMBAL:   //手动控制且跟随云台
+    {
+      follow_gimbal_handler();
+    }break;
+
+    default:
+    {
+      chassis_stop_handler();
+    }break;
+  }
+
+  mecanum_calc(chassis.vx, chassis.vy, chassis.vw, chassis.wheel_spd_ref); //麦克纳姆轮速度解算
+  for (int i = 0; i < 4; i++)
+  {
+    chassis.current[i] = pid_calc(&pid_spd[i], chassis.wheel_spd_fdb[i], chassis.wheel_spd_ref[i]);
+		//chassis.current[i] = 0.1*chassis.current[i] + 0.9*chassis.current_last[i];
+		chassis.current_last[i] = chassis.current[i];
+  }
+  
+  if (!chassis_is_controllable())
+  {
+    memset(chassis.current, 0, sizeof(chassis.current));
+  }
+  //power_limit_handler();  //一个假的限功率（限不好）
+  memcpy(global_current.chassis_current, chassis.current, sizeof(chassis.current)); //将chssis中层控制结构输出赋值到直接发给can的底层输出
+	
+	
+}
+
+
+/********************************************gimbal_task(void)******************************************************/
+void gimbal_task(void)
+{
+	//模式控制，所有云台位置当前值和指定值改动应当在下面发生
+	if(gimbal.ctrl_mode == GIMBAL_FOLLOW_ZGYRO)
+	{
+    PID_struct_init(&pid_yaw, POSITION_PID, 2000, 0, 15, 0 ,0);
+	}
+	else
+	{
+		PID_struct_init(&pid_yaw, POSITION_PID, 2000, 0, 30, 0.1, 0); //30
+	}
+	if(gimbal.ctrl_mode != GIMBAL_TRACK_ARMOR)
+	{
+		track_pit = 0;
+		track_yaw = 0;
+		track_once = 0;
+	}
+	switch (gimbal.ctrl_mode)
+  {
+    case GIMBAL_INIT:           //初始回正模式
+      init_mode_handler();
+    break;
+    
+    case GIMBAL_NO_ARTI_INPUT:  //没有输入的情况
+      no_action_handler();
+    break;
+
+    case GIMBAL_FOLLOW_ZGYRO:   //云台跟随板载陀螺仪
+      closed_loop_handler();
+    break;
+
+    case GIMBAL_TRACK_ARMOR:    //辅助瞄准
+      track_aimor_handler();
+    break;
+
+    case GIMBAL_PATROL_MODE:    //哨兵巡逻模式
+      gimbal_patrol_handler();
+    break;
+		
+		case GIMBAL_SHOOT_BUFF:     //打大神符
+		  shoot_buff_handler();
+		break;
+
+    case GIMBAL_POSITION_MODE:  //PC控制云台位置（编码器位置）
+      pc_position_ctrl_handler();
+    break;
+
+    default:
+    break;
+  }
+	
+	if(cover_state)    gimbal.pid.pit_angle_ref = 0;                         //如果弹仓盖打开，pitch轴回正
+	
+  pid_calc(&pid_yaw, gimbal.pid.yaw_angle_fdb, gimbal.pid.yaw_angle_ref);  //yaw位置环计算输出速度
+  pid_calc(&pid_pit, gimbal.pid.pit_angle_fdb, gimbal.pid.pit_angle_ref);  //pitch位置环计算输出速度
+  gimbal.pid.yaw_spd_ref = pid_yaw.out;                                    //yaw速度指定值设置为位置环pid输出
+  gimbal.pid.pit_spd_ref = pid_pit.out;                                    //pitch速度指定值设置为位置环pid输出
+	
+  gimbal.pid.yaw_spd_fdb = gimbal.sensor.yaw_palstance;                    //yaw角速度当前值更新,来自imu
+  gimbal.pid.pit_spd_fdb = gimbal.sensor.pit_palstance;                    //pitch角速度当前值更新，来自imu
+  
+  pid_calc(&pid_yaw_spd, gimbal.pid.yaw_spd_fdb, gimbal.pid.yaw_spd_ref);  //yaw速度环计算输出电流
+  pid_calc(&pid_pit_spd, gimbal.pid.pit_spd_fdb, gimbal.pid.pit_spd_ref);  //pitch速度环计算输出电流
+
+  /* 检测云台是否可控
+     可控标准： 云台没有离线，遥控系统没有离线，云台模式不是relax
+     检测离线还没有写，这里暂时一直可以进	*/
+  if (gimbal_is_controllable())
+	{
+    global_current.gimbal_current[0] = YAW_MOTO_POSITIVE_DIR*pid_yaw_spd.out; //yaw输出，前面为安装方向控制
+    global_current.gimbal_current[1] = PIT_MOTO_POSITIVE_DIR*pid_pit_spd.out; //pitch输出，前面为安装方向控制
+    global_current.gimbal_current[2] = pid_trigger_spd.out;                   //拨弹电机输出
+  }
+  else
+  {
+    memset(global_current.gimbal_current, 0, sizeof(global_current.gimbal_current));
+    gimbal.ctrl_mode = GIMBAL_RELAX;
+    pid_trigger.iout = 0;
+  }
+
+}
+/********************************************shoot_task()******************************************************/
+void shoot_task()
+{
+	
+	osEvent event;
+	
+	setfric_wheel_spd(); //设置摩擦轮转速  根据射击模式（单点，三连发，全自动，这些在模式切换时改） 以及步兵级别给定转速
+	fric_wheel_ctrl();   //摩擦轮控制
+    
+	if (!shoot.fric_wheel_run)  // 如果摩擦轮没开，不打蛋
+  {
+    shoot.shoot_cmd   = 0;    //不单发
+    shoot.c_shoot_cmd = 0;    //不连发
+  }
+    
+  if (shoot.fric_wheel_run)   //摩擦轮已打开，允许打蛋
+  {
+    if (shoot.shoot_cmd==1)   //单发
+    {
+		  //trig.pos_ref = moto_trigger.total_encoder; //更新拨弹电机编码器值
+			switch(shoot.firemode)
+			{
+				case(TRIPLE_SHOOT):                      //如果涉及模式时三连发
+					trig.pos_ref += 147456 * trig.dir;     //拨弹电机转的位置加三倍单发
+					break;
+			  case(SINGLE_SHOOT):                      //如果是单发
+					trig.pos_ref += 49152 * trig.dir;      //加1/6*一圈
+					break;
+				case(FULL_AUTOSHOOT):                    //单发条件下不允许全自动（即一直连发）
+					shoot.shoot_cmd = 0;
+				  shoot.c_shoot_cmd = 1;
+					break;
+				case(AUTO_CTRL_SHOOT):                   //自动射击
+				{
+					if(pc_recv_mesg.shoot_contrl_data.shoot_mode!=0)    //接收到pc指令
+					{ 
+						single_shoot_time = HAL_GetTick();                //记录时间，控制射频
+						if(pc_recv_mesg.shoot_contrl_data.shoot_mode == SHOOT_ON)
+						{									
+							if(single_shoot_time-single_shoot_onetime>100) //100为控制射频
+							{
+								trig.pos_ref += 49152 * trig.dir;            //单发
+								single_shoot_onetime = HAL_GetTick();        //记录时间，控制射频
+							}
+						}
+						pc_recv_mesg.shoot_contrl_data.shoot_mode = 0;    //打完一蛋清0防止一直打
+				  }
+					break;
+				}
+			}
+      shoot.shoot_cmd = 2; //打完一蛋单发标志位归2，防止一直打                         
+    }
+		
+          
+    if (shoot.c_shoot_cmd==1)                        //开启连发模式,只用速度环，拨弹电机一直转
+	  {
+		  trig.pos_ref = moto_trigger.total_encoder-moto_trigger.total_encoder%49152; //退出连发时拨弹电机在最佳拨弹位置，即近似初始位置
+		  trig.spd_ref = shoot.trigger_motor_speed * trig.dir;  //全速的时候播弹速度，可以根据等级修改，感觉意义不大
+    }
+	  else
+		{
+			//拨弹电机位置环pid
+      pid_calc(&pid_trigger, moto_trigger.total_encoder / 100, trig.pos_ref / 100);
+      trig.spd_ref = pid_trigger.out;                                 //如果不是连发模式，速度的指定值设置为单发位置环pid算出的值
+    }
+		if(shoot.c_shoot_cmd!=1&&shoot.shoot_cmd!=1)
+		{
+			pid_calc(&pid_trigger, moto_trigger.total_encoder / 100, trig.pos_ref / 100);
+      trig.spd_ref = pid_trigger.out; 
+		}
+		block_bullet_handler();                                           //卡弹处理
+    pid_calc(&pid_trigger_spd, moto_trigger.speed_rpm, trig.spd_ref); //速度环pid算输出，具体输出与发送在gimbal_task
+  }
+  else
+  {
+		trig.spd_ref = 0;                                                 //摩擦轮不开时拨弹不能动
+		pid_calc(&pid_trigger_spd, moto_trigger.speed_rpm, trig.spd_ref); //速度环pid算输出，具体输出与发送在gimbal_task
+     //pid_trigger_spd.out = 0;                            //摩擦轮没开不允许打蛋时拨弹电机放松
+  }
+}
+
+/********************************************mode_switch_task(void)******************************************************/
+void mode_switch_task(void)
+{
+    
+  get_main_ctrl_mode();  //更新全局控制模式，即手动、半自动、全自动
+  get_gimbal_mode();     //更新云台控制模式
+  get_chassis_mode();    //更新底盘控制模式
+  get_shoot_mode();      //更新发射机构控制模式
+  
+  get_global_last_mode();//更新上次模式
+
+}
