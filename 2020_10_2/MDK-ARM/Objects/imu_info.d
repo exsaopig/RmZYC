@@ -8,7 +8,7 @@
 .\objects\imu_info.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\imu_info.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f427xx.h
 .\objects\imu_info.o: ..\Drivers\CMSIS\Include\core_cm4.h
-.\objects\imu_info.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\imu_info.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\imu_info.o: ..\Drivers\CMSIS\Include\core_cmInstr.h
 .\objects\imu_info.o: ..\Drivers\CMSIS\Include\cmsis_armcc.h
 .\objects\imu_info.o: ..\Drivers\CMSIS\Include\core_cmFunc.h
@@ -16,7 +16,7 @@
 .\objects\imu_info.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\objects\imu_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 .\objects\imu_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
-.\objects\imu_info.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\imu_info.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\imu_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
 .\objects\imu_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
 .\objects\imu_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h
@@ -42,10 +42,10 @@
 .\objects\imu_info.o: ..\AppCtrl\Inc\pid.h
 .\objects\imu_info.o: ..\SysConfig\sys_config.h
 .\objects\imu_info.o: ..\UserBsp\Inc\bsp_io.h
-.\objects\imu_info.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\imu_info.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\imu_info.o: ..\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
 .\objects\imu_info.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\objects\imu_info.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\imu_info.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\imu_info.o: ..\FreeRTOS\Source\include\FreeRTOSConfig.h
 .\objects\imu_info.o: ..\FreeRTOS\Source\include\projdefs.h
 .\objects\imu_info.o: ..\FreeRTOS\Source\include\portable.h

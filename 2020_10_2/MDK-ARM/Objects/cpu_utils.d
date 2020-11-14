@@ -2,8 +2,8 @@
 .\objects\cpu_utils.o: ..\UserBsp\Inc\cpu_utils.h
 .\objects\cpu_utils.o: ..\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
 .\objects\cpu_utils.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\objects\cpu_utils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\cpu_utils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\cpu_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\cpu_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\cpu_utils.o: ..\FreeRTOS\Source\include\FreeRTOSConfig.h
 .\objects\cpu_utils.o: ..\Inc\main.h
 .\objects\cpu_utils.o: ..\FreeRTOS\Source\include\projdefs.h
@@ -31,7 +31,7 @@
 .\objects\cpu_utils.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\objects\cpu_utils.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 .\objects\cpu_utils.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
-.\objects\cpu_utils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\cpu_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\cpu_utils.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
 .\objects\cpu_utils.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
 .\objects\cpu_utils.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h

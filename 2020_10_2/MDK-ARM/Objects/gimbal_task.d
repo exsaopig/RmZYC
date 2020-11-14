@@ -8,7 +8,7 @@
 .\objects\gimbal_task.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\gimbal_task.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f427xx.h
 .\objects\gimbal_task.o: ..\Drivers\CMSIS\Include\core_cm4.h
-.\objects\gimbal_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\gimbal_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\gimbal_task.o: ..\Drivers\CMSIS\Include\core_cmInstr.h
 .\objects\gimbal_task.o: ..\Drivers\CMSIS\Include\cmsis_armcc.h
 .\objects\gimbal_task.o: ..\Drivers\CMSIS\Include\core_cmFunc.h
@@ -16,7 +16,7 @@
 .\objects\gimbal_task.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\objects\gimbal_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 .\objects\gimbal_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
-.\objects\gimbal_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\gimbal_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\gimbal_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
 .\objects\gimbal_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
 .\objects\gimbal_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h
@@ -37,11 +37,11 @@
 .\objects\gimbal_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h
 .\objects\gimbal_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h
 .\objects\gimbal_task.o: ..\Information\Inc\gimbal_info.h
-.\objects\gimbal_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\gimbal_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\gimbal_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\gimbal_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\gimbal_task.o: ..\AppCtrl\Inc\pid.h
 .\objects\gimbal_task.o: ..\AppCtrl\Inc\ramp.h
-.\objects\gimbal_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\gimbal_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\gimbal_task.o: ..\Inc\usart.h
 .\objects\gimbal_task.o: ..\UserBsp\Inc\bsp_can.h
 .\objects\gimbal_task.o: ..\Inc\can.h
@@ -55,7 +55,7 @@
 .\objects\gimbal_task.o: ..\Information\Inc\judgement_info.h
 .\objects\gimbal_task.o: ..\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
 .\objects\gimbal_task.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\objects\gimbal_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\gimbal_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\gimbal_task.o: ..\FreeRTOS\Source\include\FreeRTOSConfig.h
 .\objects\gimbal_task.o: ..\FreeRTOS\Source\include\projdefs.h
 .\objects\gimbal_task.o: ..\FreeRTOS\Source\include\portable.h

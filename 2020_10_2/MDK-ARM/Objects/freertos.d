@@ -1,7 +1,7 @@
 .\objects\freertos.o: ..\Src\freertos.c
 .\objects\freertos.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\objects\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\freertos.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\freertos.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\freertos.o: ..\FreeRTOS\Source\include\FreeRTOSConfig.h
 .\objects\freertos.o: ..\Inc\main.h
 .\objects\freertos.o: ..\FreeRTOS\Source\include\projdefs.h
@@ -31,7 +31,7 @@
 .\objects\freertos.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\objects\freertos.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 .\objects\freertos.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
-.\objects\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\freertos.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\freertos.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
 .\objects\freertos.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
 .\objects\freertos.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h
@@ -62,8 +62,8 @@
 .\objects\freertos.o: ..\UserBsp\Inc\bsp_uart.h
 .\objects\freertos.o: ..\Inc\usart.h
 .\objects\freertos.o: ..\AppCtrl\Inc\pid.h
-.\objects\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-.\objects\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\freertos.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\freertos.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\freertos.o: ..\AppCtrl\Inc\info_get_task.h
 .\objects\freertos.o: ..\AppCtrl\Inc\comm_task.h
 .\objects\freertos.o: ..\AppCtrl\Inc\modeswitch_task.h

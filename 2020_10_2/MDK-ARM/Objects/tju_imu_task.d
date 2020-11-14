@@ -8,7 +8,7 @@
 .\objects\tju_imu_task.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\tju_imu_task.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f427xx.h
 .\objects\tju_imu_task.o: ..\Drivers\CMSIS\Include\core_cm4.h
-.\objects\tju_imu_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\tju_imu_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\tju_imu_task.o: ..\Drivers\CMSIS\Include\core_cmInstr.h
 .\objects\tju_imu_task.o: ..\Drivers\CMSIS\Include\cmsis_armcc.h
 .\objects\tju_imu_task.o: ..\Drivers\CMSIS\Include\core_cmFunc.h
@@ -16,7 +16,7 @@
 .\objects\tju_imu_task.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\objects\tju_imu_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 .\objects\tju_imu_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
-.\objects\tju_imu_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\tju_imu_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\tju_imu_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
 .\objects\tju_imu_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
 .\objects\tju_imu_task.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h
@@ -39,7 +39,7 @@
 .\objects\tju_imu_task.o: ..\SysConfig\sys_config.h
 .\objects\tju_imu_task.o: ..\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
 .\objects\tju_imu_task.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\objects\tju_imu_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\tju_imu_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\tju_imu_task.o: ..\FreeRTOS\Source\include\FreeRTOSConfig.h
 .\objects\tju_imu_task.o: ..\FreeRTOS\Source\include\projdefs.h
 .\objects\tju_imu_task.o: ..\FreeRTOS\Source\include\portable.h

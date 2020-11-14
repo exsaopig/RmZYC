@@ -1,9 +1,9 @@
 .\objects\cmsis_os.o: ..\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c
-.\objects\cmsis_os.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\cmsis_os.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\cmsis_os.o: ..\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
 .\objects\cmsis_os.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\objects\cmsis_os.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\cmsis_os.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\cmsis_os.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\cmsis_os.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\cmsis_os.o: ..\FreeRTOS\Source\include\FreeRTOSConfig.h
 .\objects\cmsis_os.o: ..\Inc\main.h
 .\objects\cmsis_os.o: ..\FreeRTOS\Source\include\projdefs.h

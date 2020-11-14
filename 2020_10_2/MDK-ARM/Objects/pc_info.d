@@ -8,7 +8,7 @@
 .\objects\pc_info.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\pc_info.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f427xx.h
 .\objects\pc_info.o: ..\Drivers\CMSIS\Include\core_cm4.h
-.\objects\pc_info.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\pc_info.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\pc_info.o: ..\Drivers\CMSIS\Include\core_cmInstr.h
 .\objects\pc_info.o: ..\Drivers\CMSIS\Include\cmsis_armcc.h
 .\objects\pc_info.o: ..\Drivers\CMSIS\Include\core_cmFunc.h
@@ -16,7 +16,7 @@
 .\objects\pc_info.o: ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\objects\pc_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 .\objects\pc_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
-.\objects\pc_info.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\pc_info.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\pc_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
 .\objects\pc_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
 .\objects\pc_info.o: ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h
@@ -43,10 +43,10 @@
 .\objects\pc_info.o: ..\SysConfig\sys_config.h
 .\objects\pc_info.o: ..\AppCtrl\Inc\gimbal_task.h
 .\objects\pc_info.o: ..\Information\Inc\gimbal_info.h
-.\objects\pc_info.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\pc_info.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\pc_info.o: ..\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h
 .\objects\pc_info.o: ..\FreeRTOS\Source\include\FreeRTOS.h
-.\objects\pc_info.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\pc_info.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\pc_info.o: ..\FreeRTOS\Source\include\FreeRTOSConfig.h
 .\objects\pc_info.o: ..\FreeRTOS\Source\include\projdefs.h
 .\objects\pc_info.o: ..\FreeRTOS\Source\include\portable.h
